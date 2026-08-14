@@ -19,6 +19,7 @@ export interface UseSupplementDataReturn {
   updateSupplement: (uid: string, field: string, value: string) => void;
   removeSupplement: (uid: string) => void;
   reorderSupplement: (fromUid: string, toUid: string) => void;
+  onPorcionCantidadChange: (uid: string, newCantidad: string) => void;
   stats: {
     totalSuplementos: number;
   };
@@ -77,6 +78,26 @@ export default function useSupplementData(
     [setSupplements]
   );
 
+  const onPorcionCantidadChange = useCallback((uid: string, newCantidad: string) => {
+    setSupplements((prev) =>
+      prev.map((s) => {
+        if (s.uid !== uid) return s;
+        const match = supplementDatabase.find((ex) => ex.nombre.toLowerCase() === (s.nombre || '').toLowerCase());
+        const baseDosis = match ? match.dosisEstandar : null;
+        const unidad = match ? match.unidad : '';
+        const cantidad = parseFloat(newCantidad) || 1;
+        const grams = baseDosis !== null ? Math.round(baseDosis * cantidad) : null;
+        const plural = cantidad > 1 && unidad ? 's' : '';
+        return {
+          ...s,
+          cantidad: newCantidad,
+          gramos: grams !== null ? `${grams}${unidad}` : s.gramos,
+          porcion: `${cantidad} ${unidad}${plural}`.trim(),
+        };
+      })
+    );
+  }, [setSupplements]);
+
   const removeSupplement = useCallback(
     (uid: string) => {
       setSupplements((prev) => prev.filter((s) => s.uid !== uid));
@@ -134,6 +155,7 @@ export default function useSupplementData(
     updateSupplement,
     removeSupplement,
     reorderSupplement,
+    onPorcionCantidadChange,
     stats,
   };
 }

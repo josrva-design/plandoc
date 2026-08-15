@@ -1,0 +1,105 @@
+@import "tailwindcss";
+@import "../docfitness-tokens.css";
+@import './styles/typography.css';
+@import './styles/components.css';
+@import './styles/editor.css';
+
+@theme {
+  /* === BRAND COLORS === */
+  --color-primary-50: #E0EFFF;
+  --color-primary-100: #B3D9FF;
+  --color-primary-200: #99C2FF;
+  --color-primary-300: #66A3FF;
+  --color-primary: #0066CC;
+  --color-primary-dark: #004d99;
+  --color-navy: #0D2640;
+  --color-green: #2E9E70;
+  --color-accent: #CC6600;
+  --color-gray-soft: #E8E8E8;
+  --color-surface: #F6F6F6;
+  --color-white: #FFFFFF;
+  --color-border: #d1d5db;
+
+  /* === SEMANTIC COLORS === */
+  --color-text-primary: #0D2640;
+  --color-text-secondary: #4b5563;
+  --color-text-muted: #6b7280;
+  --color-bg-base: #FFFFFF;
+  --color-bg-elevated: #F6F6F6;
+  --color-bg-subtle: #F0F0F0;
+  --color-danger: #DC2626;
+  --color-danger-light: #FEE2E2;
+  --color-orange: #FE4D11;
+  --color-orange-light: #FFF0E6;
+  --color-orange-dark: #C43D0A;
+  --color-red-light: #FEE2E2;
+  --color-red-dark: #991B1B;
+  --color-emerald-50: #ECFDF5;
+  --color-emerald-100: #D1FAE5;
+  --color-blue-50: #EFF6FF;
+  --color-blue-100: #DBEAFE;
+  --color-danger-lighter: #FECACA;
+
+  /* === LEGACY ALIASES === */
+  --color-whatsapp: #25d366;
+  --color-deep: #0D2640;
+  --color-gray: #E8E8E8;
+  --color-light: #F8F9FA;
+  --color-red: #EF4444;
+  --color-blue: #0066CC;
+  --color-muted: #6b7280;
+
+  /* === TYPOGRAPHY === */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+
+  /* ClientPage unified type scale (Escala A) */
+  --cp-text-hero: 22px;
+  --cp-text-subtitle: 11px;
+  --cp-text-section: 11px;
+  --cp-text-data: 16px;
+  --cp-text-body: 12px;
+  --cp-text-secondary: 10px;
+  --cp-text-caption: 9px;
+
+  /* Tailwind text size overrides */
+  --text-xs: 10px;
+  --text-sm: 11px;
+  --text-base: 12px;
+  --text-lg: 13px;
+  --text-xl: 16px;
+
+  /* === RADIUS === */
+  --radius: 0.75rem;
+  --radius-lg: 2rem;
+  --radius-card: 8px;
+  --radius-pill: 999px;
+
+  /* === SHADOWS === */
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--white);
+    font-family: var(--font-sans);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  input, textarea, select, button {
+    font-family: inherit;
+  }
+
+  .input-placeholder::placeholder {
+    color: #9ca3af;
+    opacity: 1;
+  }
+}

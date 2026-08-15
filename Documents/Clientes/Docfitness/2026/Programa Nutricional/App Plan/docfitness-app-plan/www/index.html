@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DocFitness | Medicina · Nutrición · Entrenamiento</title>
+  <meta name="description"
+    content="DocFitness integra medicina clínica, nutrición de precisión y entrenamiento periodizado en un plan personalizado para transformar tu composición corporal. Aguascalientes, México.">
+  <meta property="og:title" content="DocFitness | Tu cuerpo merece un plan médico, no una dieta más.">
+  <meta property="og:description"
+    content="Evaluación clínica + nutrición de precisión + entrenamiento periodizado. Todo en un solo proceso, diseñado para ti.">
+  <meta property="og:image" content="assets/og-image.jpg">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+  <!-- Header -->
+  <header class="site-header" id="header">
+    <nav>
+      <div>
+        <img class="header-logo header-logo--white" id="logo-white" src="assets/logo-white.svg" alt="DocFitness">
+        <img class="header-logo header-logo--blue" id="logo-blue" src="assets/logo-blue.svg" alt="DocFitness">
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#caso-real">CASOS REALES</a></li>
+        <li><a href="#evaluacion">EVALUACIÓN</a></li>
+        <li><a href="#metodo">MÉTODO</a></li>
+      </ul>
+      <button class="btn btn--outline nav-cta" onclick="enviarWhatsApp()">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" style="margin-right: 0;">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+        </svg>
+        WHATSAPP
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menú" onclick="toggleMenu()">
+        <svg class="icon-open" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg class="icon-close" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#caso-real" onclick="closeMenu()">CASOS REALES</a>
+      <a href="#evaluacion" onclick="closeMenu()">EVALUACIÓN</a>
+      <a href="#metodo" onclick="closeMenu()">MÉTODO</a>
+      <button class="btn btn--wa btn--full" onclick="enviarWhatsApp(); closeMenu();">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" style="margin-right: 0;">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+        </svg>
+        CONTACTAR POR WHATSAPP
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <video id="hero-video" class="hero__video" loop muted autoplay playsinline webkit-playsinline>
+      <source src="assets/hero-video.webm" type="video/webm">
+      <source src="assets/hero-video.mp4" type="video/mp4">
+    </video>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <p class="hero__super fade-up">ESTÉTICA CORPORAL | MEDICINA | NUTRICIÓN | ENTRENAMIENTO</p>
+      <h1 class="hero__title fade-up delay-1">Tu cuerpo merece<br>un plan médico,<br>no una dieta más.</h1>
+      <button class="btn btn--primary btn--lg fade-up delay-2"
+        onclick="document.getElementById('evaluacion').scrollIntoView({behavior:'smooth'})">
+        QUIERO COMENZAR
+      </button>
+    </div>
+  </section>
+
+  <!-- Resultados / Carrusel -->
+  <section class="section section--white" id="casos">
+    <div class="carousel-viewport">
+      <div class="carousel-track" id="carousel-track">
+        <img class="carousel-card" src="assets/cases/01.webp" loading="lazy" alt="Caso 1" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/02.webp" loading="lazy" alt="Caso 2" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/03.webp" loading="lazy" alt="Caso 3" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/04.webp" loading="lazy" alt="Caso 4" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/05.webp" loading="lazy" alt="Caso 5" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/06.webp" loading="lazy" alt="Caso 6" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/07.webp" loading="lazy" alt="Caso 7" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/08.webp" loading="lazy" alt="Caso 8" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/09.webp" loading="lazy" alt="Caso 9" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/10.webp" loading="lazy" alt="Caso 10" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/11.webp" loading="lazy" alt="Caso 11" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/12.webp" loading="lazy" alt="Caso 12" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/13.webp" loading="lazy" alt="Caso 13" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/14.webp" loading="lazy" alt="Caso 14" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/15.webp" loading="lazy" alt="Caso 15" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/16.webp" loading="lazy" alt="Caso 16" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/17.webp" loading="lazy" alt="Caso 17" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/18.webp" loading="lazy" alt="Caso 18" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/19.webp" loading="lazy" alt="Caso 19" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/20.webp" loading="lazy" alt="Caso 20" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/21.webp" loading="lazy" alt="Caso 21" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/22.webp" loading="lazy" alt="Caso 22" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/23.webp" loading="lazy" alt="Caso 23" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/24.webp" loading="lazy" alt="Caso 24" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/25.webp" loading="lazy" alt="Caso 25" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/26.webp" loading="lazy" alt="Caso 26" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/27.webp" loading="lazy" alt="Caso 27" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/28.webp" loading="lazy" alt="Caso 28" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/29.webp" loading="lazy" alt="Caso 29" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/30.webp" loading="lazy" alt="Caso 30" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/31.webp" loading="lazy" alt="Caso 31" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/32.webp" loading="lazy" alt="Caso 32" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/33.webp" loading="lazy" alt="Caso 33" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/34.webp" loading="lazy" alt="Caso 34" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/35.webp" loading="lazy" alt="Caso 35" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/36.webp" loading="lazy" alt="Caso 36" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/37.webp" loading="lazy" alt="Caso 37" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/38.webp" loading="lazy" alt="Caso 38" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/39.webp" loading="lazy" alt="Caso 39" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/40.webp" loading="lazy" alt="Caso 40" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/41.webp" loading="lazy" alt="Caso 41" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/42.webp" loading="lazy" alt="Caso 42" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/43.webp" loading="lazy" alt="Caso 43" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/44.webp" loading="lazy" alt="Caso 44" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/45.webp" loading="lazy" alt="Caso 45" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/46.webp" loading="lazy" alt="Caso 46" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/47.webp" loading="lazy" alt="Caso 47" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/48.webp" loading="lazy" alt="Caso 48" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/49.webp" loading="lazy" alt="Caso 49" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/50.webp" loading="lazy" alt="Caso 50" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/51.webp" loading="lazy" alt="Caso 51" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/52.webp" loading="lazy" alt="Caso 52" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/53.webp" loading="lazy" alt="Caso 53" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/54.webp" loading="lazy" alt="Caso 54" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/55.webp" loading="lazy" alt="Caso 55" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/56.webp" loading="lazy" alt="Caso 56" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/57.webp" loading="lazy" alt="Caso 57" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/58.webp" loading="lazy" alt="Caso 58" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/59.webp" loading="lazy" alt="Caso 59" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/60.webp" loading="lazy" alt="Caso 60" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/61.webp" loading="lazy" alt="Caso 61" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/62.webp" loading="lazy" alt="Caso 62" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/63.webp" loading="lazy" alt="Caso 63" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/64.webp" loading="lazy" alt="Caso 64" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/65.webp" loading="lazy" alt="Caso 65" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/66.webp" loading="lazy" alt="Caso 66" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/67.webp" loading="lazy" alt="Caso 67" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/68.webp" loading="lazy" alt="Caso 68" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/69.webp" loading="lazy" alt="Caso 69" width="320" height="320">
+        <img class="carousel-card" src="assets/cases/70.webp" loading="lazy" alt="Caso 70" width="320" height="320">
+        <!-- Clones para loop infinito -->
+        <img class="carousel-card" src="assets/cases/01.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/02.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/03.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/04.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/05.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/06.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/07.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/08.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/09.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/10.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/11.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/12.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/13.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/14.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/15.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/16.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/17.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/18.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/19.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/20.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/21.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/22.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/23.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/24.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/25.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/26.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/27.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/28.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/29.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/30.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/31.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/32.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/33.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/34.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/35.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/36.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/37.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/38.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/39.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/40.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/41.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/42.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/43.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/44.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/45.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/46.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/47.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/48.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/49.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/50.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/51.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/52.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/53.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/54.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/55.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/56.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/57.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/58.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/59.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/60.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/61.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/62.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/63.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/64.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/65.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/66.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/67.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/68.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/69.webp" loading="lazy" aria-hidden="true" alt="">
+        <img class="carousel-card" src="assets/cases/70.webp" loading="lazy" aria-hidden="true" alt="">
+      </div>
+    </div>
+  </section>
+  <!-- Método -->
+  <section class="section section--white" id="metodo" aria-labelledby="metodo-cards">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label">NUESTRO MÉTODO</span>
+        <h2>No empezamos con una dieta.</h2>
+        <p>Empezamos entendiendo tu cuerpo, tus hábitos y tus objetivos para construir una estrategia sostenible.</p>
+      </div>
+      <div class="metodo-grid">
+        <article class="metodo-card fade-up">
+          <div class="metodo-card-header">
+            <p class="metodo-num">01</p>
+            <h3>Diagnóstico</h3>
+          </div>
+          <p>Analizamos composición corporal, hábitos, antecedentes y contexto para entender tu punto de partida.</p>
+          <ul class="check-list">
+            <li><svg class="check-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg> Biometría Hemática</li>
+            <li><svg class="check-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg> Análisis Bioquímico</li>
+            <li><svg class="check-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg> Estudio Antropométrico</li>
+          </ul>
+        </article>
+        <article class="metodo-card fade-up delay-1">
+          <div class="metodo-card-header">
+            <p class="metodo-num">02</p>
+            <h3>Proyección</h3>
+          </div>
+          <p>Te mostramos una referencia clara del cuerpo que puedes alcanzar con el plan, basada en tu cuerpo y objetivo.</p>
+          <ul class="check-list">
+            <li><svg class="check-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg> Simulación visual</li>
+            <li><svg class="check-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg> Ajustes por etapas</li>
+            <li><svg class="check-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg> Progresión</li>
+          </ul>
+        </article>
+        <article class="metodo-card fade-up delay-2">
+          <div class="metodo-card-header">
+            <p class="metodo-num">03</p>
+            <h3>Plan Personalizado</h3>
+          </div>
+          <p>Diseñamos una estrategia de nutrición, entrenamiento y suplementación adaptada a tus necesidades.</p>
+          <ul class="check-list">
+            <li><svg class="check-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg> Tratamiento Nutrimental</li>
+            <li><svg class="check-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg> Suplementación Clínica</li>
+            <li><svg class="check-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg> Tratamiento de Entrenamiento</li>
+          </ul>
+        </article>
+        <article class="metodo-card fade-up delay-3">
+          <div class="metodo-card-header">
+            <p class="metodo-num">04</p>
+            <h3>Seguimiento</h3>
+          </div>
+          <p>Evaluamos avances, ajustamos el plan y te acompañamos durante todo el proceso.</p>
+          <ul class="check-list">
+            <li><svg class="check-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg> Soporte Continuo</li>
+            <li><svg class="check-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg> Ajustes Mensuales</li>
+            <li><svg class="check-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg> Reevaluación Clínica</li>
+          </ul>
+        </article>
+      </div>
+      <div class="fade-up" id="metodo-cards">
+        <button class="btn btn--primary" onclick="document.getElementById('evaluacion').scrollIntoView({behavior:'smooth'})">
+          QUIERO COMENZAR
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Evaluación Form -->
+  <section class="section section--white" id="evaluacion">
+    <div class="container">
+      <div class="form-card fade-up">
+      <div class="form-card__grid">
+        <!-- Info -->
+        <div>
+          <span class="label">COMIENZA AHORA</span>
+          <h2>Comienza con una evaluación profesional.</h2>
+          <p class="muted-paragraph">Antes de crear tu plan, analizamos tu contexto, objetivos
+            y composición corporal para diseñar una estrategia personalizada.</p>
+          <ul class="trust-list">
+            <li class="trust-item">
+              <svg class="trust-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              <div><strong>Privacidad Médica</strong>
+                <p>Tus datos están protegidos bajo protocolos de confidencialidad clínica.</p>
+              </div>
+            </li>
+            <li class="trust-item">
+              <svg class="trust-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              <div><strong>Respuesta en &lt; 24h</strong>
+                <p>Un especialista revisará tu perfil para personalizar tu primera cita.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- Formulario -->
+        <div class="form-fields">
+          <div class="field-row">
+            <div>
+              <label for="nombre">NOMBRE</label>
+              <input id="nombre" type="text" placeholder="Tu nombre">
+            </div>
+            <div>
+              <label for="edad">EDAD</label>
+              <input id="edad" type="text" placeholder="Edad">
+            </div>
+            <div class="fisico-wrapper">
+              <label for="nacionalidad">NACIONALIDAD</label>
+              <select id="nacionalidad" name="nacionalidad" required>
+                 <option value="" disabled selected>País</option>
+                 <option value="Alemania">Alemania</option>
+                 <option value="Andorra">Andorra</option>
+                 <option value="Argentina">Argentina</option>
+                 <option value="Armenia">Armenia</option>
+                 <option value="Argelia">Argelia</option>
+                 <option value="Australia">Australia</option>
+                 <option value="Austria">Austria</option>
+                 <option value="Azerbaiyán">Azerbaiyán</option>
+                 <option value="Bangladés">Bangladés</option>
+                 <option value="Barbados">Barbados</option>
+                 <option value="Baréin">Baréin</option>
+                 <option value="Bélgica">Bélgica</option>
+                 <option value="Bolivia">Bolivia</option>
+                 <option value="Brasil">Brasil</option>
+                 <option value="Camboya">Camboya</option>
+                 <option value="Canadá">Canadá</option>
+                 <option value="Camerún">Camerún</option>
+                 <option value="Chile">Chile</option>
+                 <option value="China">China</option>
+                 <option value="Chipre">Chipre</option>
+                 <option value="Colombia">Colombia</option>
+                 <option value="Corea del Sur">Corea del Sur</option>
+                 <option value="Costa Rica">Costa Rica</option>
+                 <option value="Costa de Marfil">Costa de Marfil</option>
+                 <option value="Croacia">Croacia</option>
+                 <option value="Cuba">Cuba</option>
+                 <option value="Dinamarca">Dinamarca</option>
+                 <option value="Ecuador">Ecuador</option>
+                 <option value="Egipto">Egipto</option>
+                 <option value="El Salvador">El Salvador</option>
+                 <option value="Emiratos Árabes Unidos">Emiratos Árabes Unidos</option>
+                 <option value="Estados Unidos">Estados Unidos</option>
+                 <option value="Eslovaquia">Eslovaquia</option>
+                 <option value="Eslovenia">Eslovenia</option>
+                 <option value="España">España</option>
+                 <option value="Estonia">Estonia</option>
+                 <option value="Etiopía">Etiopía</option>
+                 <option value="Filipinas">Filipinas</option>
+                 <option value="Finlandia">Finlandia</option>
+                 <option value="Francia">Francia</option>
+                 <option value="Georgia">Georgia</option>
+                 <option value="Ghana">Ghana</option>
+                 <option value="Grecia">Grecia</option>
+                 <option value="Guatemala">Guatemala</option>
+                 <option value="Haití">Haití</option>
+                 <option value="Honduras">Honduras</option>
+                 <option value="Hungría">Hungría</option>
+                 <option value="India">India</option>
+                 <option value="Indonesia">Indonesia</option>
+                 <option value="Iraq">Iraq</option>
+                 <option value="Irlanda">Irlanda</option>
+                 <option value="Irán">Irán</option>
+                 <option value="Islandia">Islandia</option>
+                 <option value="Israel">Israel</option>
+                 <option value="Italia">Italia</option>
+                 <option value="Jamaica">Jamaica</option>
+                 <option value="Japón">Japón</option>
+                 <option value="Kazajistán">Kazajistán</option>
+                 <option value="Kenia">Kenia</option>
+                 <option value="Kiribati">Kiribati</option>
+                 <option value="Kuwait">Kuwait</option>
+                 <option value="Laos">Laos</option>
+                 <option value="Luxemburgo">Luxemburgo</option>
+                 <option value="Líbano">Líbano</option>
+                 <option value="Liechtenstein">Liechtenstein</option>
+                 <option value="Lituania">Lituania</option>
+                 <option value="Malasia">Malasia</option>
+                 <option value="Malta">Malta</option>
+                 <option value="Marruecos">Marruecos</option>
+                 <option value="México">México</option>
+                 <option value="Micronesia">Micronesia</option>
+                 <option value="Mónaco">Mónaco</option>
+                 <option value="Mongolia">Mongolia</option>
+                 <option value="Mozambique">Mozambique</option>
+                 <option value="Myanmar">Myanmar</option>
+                 <option value="Nicaragua">Nicaragua</option>
+                 <option value="Nigeria">Nigeria</option>
+                 <option value="Nepal">Nepal</option>
+                 <option value="Nueva Zelanda">Nueva Zelanda</option>
+                 <option value="Noruega">Noruega</option>
+                 <option value="Omán">Omán</option>
+                 <option value="Pakistán">Pakistán</option>
+                 <option value="Panamá">Panamá</option>
+                 <option value="Papúa Nueva Guinea">Papúa Nueva Guinea</option>
+                 <option value="Paraguay">Paraguay</option>
+                 <option value="Países Bajos">Países Bajos</option>
+                 <option value="Perú">Perú</option>
+                 <option value="Polonia">Polonia</option>
+                 <option value="Portugal">Portugal</option>
+                 <option value="Puerto Rico">Puerto Rico</option>
+                 <option value="Reino Unido">Reino Unido</option>
+                 <option value="República Checa">República Checa</option>
+                 <option value="Rumania">Rumania</option>
+                 <option value="Rusia">Rusia</option>
+                 <option value="Ruanda">Ruanda</option>
+                 <option value="San Marino">San Marino</option>
+                 <option value="Samoa">Samoa</option>
+                 <option value="Senegal">Senegal</option>
+                 <option value="Singapur">Singapur</option>
+                 <option value="Sri Lanka">Sri Lanka</option>
+                 <option value="Sudáfrica">Sudáfrica</option>
+                 <option value="Suecia">Suecia</option>
+                 <option value="Suiza">Suiza</option>
+                 <option value="Siria">Siria</option>
+                 <option value="Timor Oriental">Timor Oriental</option>
+                 <option value="Tanzania">Tanzania</option>
+                 <option value="Tailandia">Tailandia</option>
+                 <option value="Tonga">Tonga</option>
+                 <option value="Trinidad y Tobago">Trinidad y Tobago</option>
+                 <option value="Túnez">Túnez</option>
+                 <option value="Tuvalu">Tuvalu</option>
+                 <option value="Turquía">Turquía</option>
+                 <option value="Uganda">Uganda</option>
+                 <option value="Ucrania">Ucrania</option>
+                 <option value="Uruguay">Uruguay</option>
+                 <option value="Vanuatu">Vanuatu</option>
+                 <option value="Venezuela">Venezuela</option>
+                 <option value="Vietnam">Vietnam</option>
+                 <option value="Yemen">Yemen</option>
+                 <option value="Zambia">Zambia</option>
+                 <option value="Zimbabwe">Zimbabwe</option>
+                 <option value="Otro">Otro</option>
+              </select>
+            </div>
+          </div>
+          <div class="field-row-2">
+            <div class="fisico-wrapper">
+              <label>TIPO DE FÍSICO</label>
+              <div class="fisico-select" id="fisico-select" role="combobox" aria-expanded="false" aria-haspopup="listbox"
+                tabindex="0">
+                <span class="fisico-selected" id="fisico-selected">
+                  <span class="fisico-placeholder">Tú tipo de físico</span>
+                </span>
+                <svg class="fisico-chevron" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+                </svg>
+              </div>
+              <ul class="fisico-dropdown" id="fisico-dropdown" role="listbox">
+                <li class="fisico-option" data-value="Ectomorfo" role="option" tabindex="-1">
+                  <span class="fisico-icon">
+                    <img src="assets/ectomorfo.svg" alt="Ectomorfo">
+                  </span>
+                  <span class="fisico-info">
+                    <strong>Ectomorfo</strong>
+                    <small>Complexión delgada, metabolismo rápido</small>
+                  </span>
+                </li>
+                <li class="fisico-option" data-value="Mesomorfo" role="option" tabindex="-1">
+                  <span class="fisico-icon">
+                    <img src="assets/mesomorfo.svg" alt="Mesomorfo">
+                  </span>
+                  <span class="fisico-info">
+                    <strong>Mesomorfo</strong>
+                    <small>Complexión atlética, gana músculo con facilidad</small>
+                  </span>
+                </li>
+                <li class="fisico-option" data-value="Endomorfo" role="option" tabindex="-1">
+                  <span class="fisico-icon">
+                    <img src="assets/endomorfo.svg" alt="Endomorfo">
+                  </span>
+                  <span class="fisico-info">
+                    <strong>Endomorfo</strong>
+                    <small>Tendencia a acumular grasa, complexión ancha</small>
+                  </span>
+                </li>
+              </ul>
+              <input type="hidden" id="fisico" name="fisico">
+            </div>
+            <div class="fisico-wrapper">
+              <label>OBJETIVO PRINCIPAL</label>
+              <div class="fisico-select" id="objetivo-select" role="combobox" aria-expanded="false"
+                aria-haspopup="listbox" tabindex="0">
+                <span class="fisico-selected" id="objetivo-selected">
+                  <span class="fisico-placeholder">Tú objetivo</span>
+                </span>
+                <svg class="fisico-chevron" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+                </svg>
+              </div>
+              <ul class="fisico-dropdown fisico-dropdown--text" id="objetivo-dropdown" role="listbox">
+                  <li class="fisico-option fisico-option--text" data-value="Mejorar mi salud" role="option" tabindex="-1">Mejorar mi salud</li>
+                  <li class="fisico-option fisico-option--text" data-value="Prevención enfermedades" role="option" tabindex="-1">Prevención enfermedades</li>
+                  <li class="fisico-option fisico-option--text" data-value="Salud mental" role="option" tabindex="-1">Salud mental</li>
+                  <li class="fisico-option fisico-option--text" data-value="Estilo vida" role="option" tabindex="-1">Estilo vida</li>
+                  <li class="fisico-option fisico-option--text" data-value="Longevidad/Antiedad" role="option" tabindex="-1">Longevidad/Antiedad</li>
+                  <li class="fisico-option fisico-option--text" data-value="Estética corporal" role="option" tabindex="-1">Estética corporal</li>
+                  <li class="fisico-option fisico-option--text" data-value="Incremento de fuerza" role="option" tabindex="-1">Incremento de fuerza</li>
+                  <li class="fisico-option fisico-option--text" data-value="Alto Rendimiento" role="option" tabindex="-1">Alto Rendimiento</li>
+                  <li class="fisico-option fisico-option--text" data-value="Competitivo" role="option" tabindex="-1">Competitivo</li>
+                </ul>
+                <input type="hidden" id="objetivo" name="objetivo">
+            </div>
+          </div>
+          <div>
+            <label for="objetivo-especifico">OBJETIVO ESPECÍFICO</label>
+            <input id="objetivo-especifico" type="text" placeholder="Cuéntanos más sobre tu objetivo...">
+          </div>
+          <p class="form-error" id="form-error">Por favor completa todos los campos antes de continuar.</p>
+          <label class="form-checkbox-label">
+            <input type="checkbox" id="privacy-accept">
+            <span>Acepto el Aviso de Privacidad</span>
+          </label>
+          <button class="btn btn--primary btn--full btn--lg" onclick="enviarEvaluacion()">
+            QUIERO COMENZAR
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Caso Real Destacado -->
+  <section class="section section--white" id="caso-real">
+    <div class="container caso-real-grid">
+      <div class="grid-2 fade-up">
+        <div class="caso-real-media">
+          <img class="caso-real-img" src="assets/evolution-case.png" loading="lazy" alt="Caso HYROX" width="400" height="300">
+          <span class="caso-real-badge">RESULTADO REAL</span>
+        </div>
+        <div>
+          <span class="label">CASO REAL</span>
+          <h2>De recomposición corporal a preparación para HYROX.</h2>
+          <p class="muted-paragraph">Un proceso guiado por evaluación, nutrición y
+            entrenamiento personalizado.</p>
+          <div class="caso-fases">
+            <div class="caso-fase">
+              <p><span>1.</span> Fase de Hipertrofia (Sept 2024, 20 semanas)</p>
+              <p>Incremento de masa muscular base.</p>
+            </div>
+            <div class="caso-fase">
+              <p><span>2.</span> Preparación Competición (Feb-Mar 2025)</p>
+              <p>Adaptación para HYROX y Triatlón.</p>
+            </div>
+            <div class="caso-fase">
+              <p><span>3.</span> Resistencia Aeróbica (Junio 2025)</p>
+              <p>Mantenimiento para Maratón completo.</p>
+            </div>
+          </div>
+          <div class="caso-metricas">
+            <div class="caso-metrica">
+              <strong>+6&nbsp;kg</strong>
+              <span>masa muscular</span>
+            </div>
+            <div class="caso-metrica">
+              <strong>-9%</strong>
+              <span>grasa corporal</span>
+            </div>
+            <div class="caso-metrica">
+              <strong>HYROX</strong>
+              <span>completado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ¿Para quién es? -->
+  <section class="section section--white" id="para-quien" aria-labelledby="comparativa-cards">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="label">¿PARA QUIÉN ES?</span>
+        <h2>La diferencia que importa.</h2>
+        <p>No todos los planes son iguales. Esto es lo que cambia cuando trabajas con un equipo médico.</p>
+      </div>
+      <div class="comparison-grid fade-up" id="comparativa-cards">
+        <div class="comparison-card comparison-card--gray">
+          <p class="comparison-title">Sin DocFitness</p>
+          <ul class="comparison-list">
+            <li><span>✕</span> Planes genéricos de internet o redes sociales</li>
+            <li><span>✕</span> Dietas de moda sin base clínica ni seguimiento</li>
+            <li><span>✕</span> Rutinas de gym sin objetivo ni periodización</li>
+            <li><span>✕</span> Resultados que no duran o que nunca llegan</li>
+            <li><span>✕</span> Sin datos, sin métricas, sin ajustes reales</li>
+          </ul>
+        </div>
+        <div class="comparison-card comparison-card--blue">
+          <p class="comparison-title">Con DocFitness</p>
+          <ul class="comparison-list">
+            <li><span>✓</span> Plan diseñado con base en tu biología real</li>
+            <li><span>✓</span> Nutrición de precisión con evaluación clínica</li>
+            <li><span>✓</span> Entrenamiento periodizado con objetivo claro</li>
+            <li><span>✓</span> Resultados medibles y sostenibles en el tiempo</li>
+            <li><span>✓</span> Seguimiento mensual y reevaluación constante</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA Final -->
+  <section class="cta-section">
+    <div class="cta-content fade-up">
+      <span class="label label--center">PLAN PERSONALIZADO</span>
+      <h2>¿Listo para comenzar?</h2>
+      <p class="cta-subtitle">Da el primer paso con una evaluación profesional y descubre qué estrategia es la adecuada
+        para ti.</p>
+      <button class="btn btn--primary" onclick="document.getElementById('evaluacion').scrollIntoView({behavior:'smooth'})">
+        QUIERO COMENZAR
+      </button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <img class="footer-logo" src="assets/logo-white.svg" alt="DocFitness">
+
+      <div class="socials-grid fade-up">
+        <a href="#" id="footer-whatsapp" target="_blank" rel="noopener noreferrer" class="social-item">
+          <div class="social-icon">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+            </svg>
+          </div>
+          <span>WHATSAPP</span>
+        </a>
+        <a href="https://www.instagram.com/eldocfitness/" target="_blank" rel="noopener noreferrer" class="social-item">
+          <div class="social-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01" />
+            </svg>
+          </div>
+          <span>INSTAGRAM</span>
+        </a>
+        <a href="https://www.youtube.com/@docfitnesscoach" target="_blank" rel="noopener noreferrer" class="social-item">
+          <div class="social-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path
+                d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z" />
+              <path d="M9.75 15.02l5.75-3.27-5.75-3.27v6.54z" />
+            </svg>
+          </div>
+          <span>YOUTUBE</span>
+        </a>
+        <a href="https://open.spotify.com/show/0xfjm7MDS0av4544Nl3lgH?si=f5a8b769afc940cd" target="_blank" rel="noopener noreferrer"
+          rel="noopener" class="social-item">
+          <div class="social-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3z" />
+              <path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8" />
+            </svg>
+          </div>
+          <span>PODCAST</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const WA = '523321012114';
+    // ↑ Edita SOLO este número para cambiar el WhatsApp de toda la página
+    const MSG_DEFAULT = 'Hola DocFitness! Me gustaría recibir su apoyo para alcanzar mis objetivos.';
+    // ↑ Edita SOLO este texto para cambiar el mensaje inicial de todos los botones
+    document.getElementById('footer-whatsapp').href = 'https://wa.me/' + WA;
+
+    // Función a prueba de bloqueadores de ventanas emergentes (simula un clic real)
+    function openWhatsAppUrl(url) {
+      const a = document.createElement('a');
+      a.href = url;
+      a.target = '_blank';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    function enviarWhatsApp(msg) {
+      const url = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg || MSG_DEFAULT);
+      openWhatsAppUrl(url);
+    }
+
+    function enviarEvaluacion() {
+      const nombre = document.getElementById('nombre').value.trim();
+      const edad = document.getElementById('edad').value.trim();
+      const nacionalidad = document.getElementById('nacionalidad').value.trim();
+      const fisico = document.getElementById('fisico').value.trim();
+      const objetivo = document.getElementById('objetivo').value;
+      const objetivoEspecifico = document.getElementById('objetivo-especifico').value.trim();
+      const privacyAccept = document.getElementById('privacy-accept').checked;
+      const err = document.getElementById('form-error');
+      const checkboxLabel = document.querySelector('.form-checkbox-label');
+
+      if (!nombre || !edad || !nacionalidad || !fisico || !objetivo || !privacyAccept) {
+        err.classList.add('visible');
+        if (!fisico) document.getElementById('fisico-select').classList.add('fisico-error');
+        if (!objetivo) document.getElementById('objetivo-select').classList.add('fisico-error');
+        if (!privacyAccept) checkboxLabel.classList.add('checkbox-error');
+        return;
+      }
+
+      err.classList.remove('visible');
+      document.getElementById('fisico-select').classList.remove('fisico-error');
+      document.getElementById('objetivo-select').classList.remove('fisico-error');
+      checkboxLabel.classList.remove('checkbox-error');
+      const msg = 'Hola DocFitness! Me gustaría recibir su apoyo para alcanzar mis objetivos.\n\n'
+        + '- *Nombre:* ' + nombre
+        + '\n- *Edad:* ' + edad + ' años'
+        + '\n- *Nacionalidad:* ' + nacionalidad
+        + '\n- *Tipo de físico:* ' + fisico
+        + '\n- *Objetivo Principal:* ' + objetivo
+        + (objetivoEspecifico ? '\n- *Objetivo Específico:* ' + objetivoEspecifico : '');
+      const url = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
+      openWhatsAppUrl(url);
+    }
+
+    /* ── Dropdown genérico ── */
+    function initDropdown(opts) {
+      var sel = document.getElementById(opts.selectId);
+      var drop = document.getElementById(opts.dropdownId);
+      var selLabel = document.getElementById(opts.selectedId);
+      var hidden = document.getElementById(opts.hiddenId);
+      var hasIcons = opts.hasIcons || false;
+
+      function openDrop() {
+        drop.classList.add('open');
+        sel.setAttribute('aria-expanded', 'true');
+        sel.classList.add('active');
+      }
+      function closeDrop() {
+        drop.classList.remove('open');
+        sel.setAttribute('aria-expanded', 'false');
+        sel.classList.remove('active');
+      }
+
+      sel.addEventListener('click', function (e) {
+        e.stopPropagation();
+        drop.classList.contains('open') ? closeDrop() : openDrop();
+      });
+      sel.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDrop(); }
+        if (e.key === 'Escape') closeDrop();
+      });
+
+      drop.querySelectorAll('.fisico-option').forEach(function (opt) {
+        opt.addEventListener('click', function () {
+          var val = opt.getAttribute('data-value');
+          hidden.value = val;
+          selLabel.innerHTML = '';
+          if (hasIcons) {
+            var icon = opt.querySelector('.fisico-icon').cloneNode(true);
+            var info = document.createElement('span');
+            info.classList.add('fisico-info');
+            info.innerHTML = '<strong>' + val + '</strong>';
+            selLabel.appendChild(icon);
+            selLabel.appendChild(info);
+          } else {
+            var span = document.createElement('span');
+            span.style.fontSize = '0.875rem';
+            span.style.fontWeight = '500';
+            span.style.color = 'var(--black)';
+            span.textContent = val;
+            selLabel.appendChild(span);
+          }
+          drop.querySelectorAll('.fisico-option').forEach(function (o) { o.classList.remove('selected'); });
+          opt.classList.add('selected');
+          sel.classList.remove('fisico-error');
+          closeDrop();
+        });
+        opt.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); opt.click(); }
+          if (e.key === 'Escape') closeDrop();
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!sel.contains(e.target) && !drop.contains(e.target)) closeDrop();
+      });
+    }
+
+    /* ── Dropdown Tipo de Físico ── */
+    initDropdown({ selectId: 'fisico-select', dropdownId: 'fisico-dropdown', selectedId: 'fisico-selected', hiddenId: 'fisico', hasIcons: true });
+
+    /* ── Dropdown Objetivo Principal (directo) ── */
+    (function () {
+      var sel = document.getElementById('objetivo-select');
+      var drop = document.getElementById('objetivo-dropdown');
+      var selLabel = document.getElementById('objetivo-selected');
+      var hidden = document.getElementById('objetivo');
+      if (!sel || !drop || !selLabel || !hidden) return;
+
+      function openDrop() {
+        drop.classList.add('open');
+        sel.setAttribute('aria-expanded', 'true');
+        sel.classList.add('active');
+      }
+      function closeDrop() {
+        drop.classList.remove('open');
+        sel.setAttribute('aria-expanded', 'false');
+        sel.classList.remove('active');
+      }
+
+      sel.addEventListener('click', function (e) {
+        e.stopPropagation();
+        drop.classList.contains('open') ? closeDrop() : openDrop();
+      });
+      sel.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDrop(); }
+        if (e.key === 'Escape') closeDrop();
+      });
+
+      drop.querySelectorAll('.fisico-option').forEach(function (opt) {
+        opt.addEventListener('click', function () {
+          var val = opt.getAttribute('data-value');
+          hidden.value = val;
+          selLabel.innerHTML = '';
+          var span = document.createElement('span');
+          span.style.fontSize = '0.875rem';
+          span.style.fontWeight = '500';
+          span.style.color = 'var(--black)';
+          span.textContent = val;
+          selLabel.appendChild(span);
+          drop.querySelectorAll('.fisico-option').forEach(function (o) { o.classList.remove('selected'); });
+          opt.classList.add('selected');
+          sel.classList.remove('fisico-error');
+          closeDrop();
+        });
+        opt.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); opt.click(); }
+          if (e.key === 'Escape') closeDrop();
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!sel.contains(e.target) && !drop.contains(e.target)) closeDrop();
+      });
+    })();
+
+    /* ── Datalist de países/regiones ── */
+    (function () {
+      var select = document.getElementById('pais-select');
+      var drop = document.getElementById('pais-dropdown');
+      var selLabel = document.getElementById('pais-selected');
+      var hidden = document.getElementById('pais');
+      if (!select || !drop || !selLabel || !hidden) return;
+
+      function openDrop() {
+        drop.classList.add('open');
+        select.setAttribute('aria-expanded', 'true');
+        select.classList.add('active');
+      }
+      function closeDrop() {
+        drop.classList.remove('open');
+        select.setAttribute('aria-expanded', 'false');
+        select.classList.remove('active');
+      }
+
+      select.addEventListener('click', function (e) {
+        e.stopPropagation();
+        drop.classList.contains('open') ? closeDrop() : openDrop();
+      });
+      select.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDrop(); }
+        if (e.key === 'Escape') closeDrop();
+      });
+
+      function selectOption(el) {
+        var val = el.getAttribute('data-value');
+        hidden.value = val;
+        selLabel.innerHTML = '';
+        var span = document.createElement('span');
+        span.style.fontSize = '0.875rem';
+        span.style.fontWeight = '500';
+        span.style.color = 'var(--black)';
+        span.textContent = val;
+        selLabel.appendChild(span);
+        drop.querySelectorAll('.fisico-option').forEach(function (o) { o.classList.remove('selected'); });
+        el.classList.add('selected');
+        select.classList.remove('fisico-error');
+        closeDrop();
+      }
+
+      drop.querySelectorAll('.fisico-option').forEach(function (opt) {
+        opt.addEventListener('click', function () { selectOption(opt); });
+        opt.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); opt.click(); }
+          if (e.key === 'Escape') closeDrop();
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!select.contains(e.target) && !drop.contains(e.target)) closeDrop();
+      });
+    })();
+
+    /* ── Header inteligente ── */
+    var header = document.getElementById('header');
+    function updateHeader() {
+      header.classList.toggle('fixed', window.scrollY > 80);
+    }
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    updateHeader();
+
+    /* ── Menú móvil ── */
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobile-menu');
+    function toggleMenu() {
+      var open = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+    }
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+    }
+    document.querySelectorAll('.mobile-menu a').forEach(function (a) {
+      a.addEventListener('click', closeMenu);
+    });
+
+    /* ── Fade-up con IntersectionObserver ── */
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(function (el) { io.observe(el); });
+    window.addEventListener('load', function () {
+      document.querySelectorAll('.fade-up').forEach(function (el) {
+        if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+      });
+    });
+
+    /* ── Carrusel: animación suave + parallax + drag ── */
+    (function () {
+      var track = document.getElementById('carousel-track');
+      if (!track) return;
+      var vp = track.closest('.carousel-viewport');
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var cardWidth = track.querySelector('.carousel-card');
+      var totalCards = track.querySelectorAll('.carousel-card').length;
+      var originalCount = totalCards / 2;
+      var step = (cardWidth ? cardWidth.getBoundingClientRect().width : 320) * originalCount;
+      var cardW = cardWidth ? cardWidth.getBoundingClientRect().width : 320;
+
+      var offset = 0;
+      var lastTs = null;
+      var baseSpeed = step / 300000; /* ~300s para un ciclo completo */
+      var paused = false;
+      var dragging = false;
+      var dragStartX = 0;
+      var dragOffset = 0;
+
+      function getEaseSpeed(ts) {
+        return baseSpeed * (1 + 0.1 * Math.sin(ts * 0.0005));
+      }
+
+      if (vp) {
+        vp.addEventListener('mouseenter', function () { paused = true; });
+        vp.addEventListener('mouseleave', function () { paused = false; });
+      }
+
+      var parallaxX = 0;
+      var parallaxY = 0;
+      var targetParallaxX = 0;
+      var targetParallaxY = 0;
+
+      document.addEventListener('mousemove', function (e) {
+        var cx = window.innerWidth / 2;
+        var cy = window.innerHeight / 2;
+        targetParallaxX = (e.clientX - cx) / cx;
+        targetParallaxY = (e.clientY - cy) / cy;
+      });
+
+      if (vp) {
+        vp.addEventListener('pointerdown', function (e) {
+          dragging = true;
+          dragStartX = e.clientX;
+          dragOffset = offset;
+          vp.setPointerCapture(1);
+          vp.style.cursor = 'grabbing';
+        }, { passive: true });
+
+        vp.addEventListener('pointermove', function (e) {
+          if (!dragging) return;
+          var dx = e.clientX - dragStartX;
+          offset = dragOffset + dx;
+        }, { passive: true });
+
+        vp.addEventListener('pointerup', function () {
+          dragging = false;
+          if (vp) vp.style.cursor = '';
+        }, { passive: true });
+
+        vp.addEventListener('pointercancel', function () {
+          dragging = false;
+          if (vp) vp.style.cursor = '';
+        }, { passive: true });
+      }
+
+      function frame(ts) {
+        if (lastTs === null) lastTs = ts;
+        var dt = ts - lastTs;
+        lastTs = ts;
+        if (!paused && !dragging) {
+          offset -= getEaseSpeed(ts) * dt;
+          if (offset <= -step) offset += step;
+        }
+
+        parallaxX += (targetParallaxX - parallaxX) * 0.05;
+        parallaxY += (targetParallaxY - parallaxY) * 0.05;
+        var parallaxShift = dragging ? 0 : parallaxX * cardW * 0.15;
+
+        track.style.transform = 'translateX(' + (offset + parallaxShift) + 'px)';
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    })();
+
+    /* ── Hero video playback en móvil ── */
+    (function () {
+      var video = document.getElementById('hero-video');
+      var hero = document.getElementById('hero');
+      if (!video || !hero || !('IntersectionObserver' in window)) return;
+
+      var observer = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          video.play().catch(function () {});
+        }
+      }, { threshold: 0.1 });
+
+      observer.observe(hero);
+    })();
+  </script>
+
+</body>
+
+</html>

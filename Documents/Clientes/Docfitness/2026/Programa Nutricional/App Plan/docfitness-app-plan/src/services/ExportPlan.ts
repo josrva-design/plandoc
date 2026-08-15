@@ -2,6 +2,7 @@ import type { ClientPlan } from "../core/types.ts";
 import { guideSections, glossaryTerms } from '../data/guideContent.ts';
 import { getDayType } from '../utils/dayType.ts';
 import { exerciseDatabase } from '../data/exerciseDatabase.ts';
+import { supplementDatabase } from '../data/supplementDatabase.ts';
 import { getMealTotalKcal, getMealTotalMacros } from '../utils/nutritionHelpers.ts';
 import { normalizeFood, normalizeMeal } from '../utils/normalizeEditorData.ts';
 
@@ -26,6 +27,21 @@ const COLORS = {
   textSecondary: '#4B5563',
 };
 
+const DESCANSOS_OPTIONS = [
+  { value: '30', label: '30 seg' },
+  { value: '60', label: '1 min' },
+  { value: '120', label: '2 min' },
+  { value: '180', label: '3 min' },
+  { value: '240', label: '4 min' },
+  { value: '300', label: '5 min' },
+];
+
+const formatRest = (restValue) => {
+  if (!restValue) return '';
+  const match = DESCANSOS_OPTIONS.find((d) => d.value === String(restValue));
+  return match ? match.label : String(restValue);
+};
+
 export const generateDashboardFitnessHTML = (data: ClientPlan, mode = "todo") => {
   const person = data.person || {};
   const firstName = person.firstName || (person.nombre || '').trim().split(/\s+/)[0] || '';
@@ -47,6 +63,7 @@ export const generateDashboardFitnessHTML = (data: ClientPlan, mode = "todo") =>
   const supplementsStrategy = data.supplementsStrategy || '';
 
   const esc = (str) => String(str ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const escRich = (str) => String(str ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/&lt;b&gt;/g, '<b>').replace(/&lt;\/b&gt;/g, '</b>').replace(/&lt;i&gt;/g, '<i>').replace(/&lt;\/i&gt;/g, '</i>').replace(/&lt;br&gt;/g, '<br>').replace(/&lt;span style=&quot;color:#DC2626&quot;&gt;/g, '<span style="color:#DC2626">').replace(/&lt;\/span&gt;/g, '</span>');
 
   const normalizeFood = (f: any) => {
     const name = f.name || f.nombre || '';
@@ -514,83 +531,83 @@ export const generateDashboardFitnessHTML = (data: ClientPlan, mode = "todo") =>
 
     const renderSectionInner = (section) => {
       switch (section.type) {
-        case 'split':
-          return `
-            <div style="display:flex;flex-direction:column;gap:12px">
-              ${(section.sides || []).map(side => `
-                <div>
-                  <span style="font-size:9px;font-weight:700;padding:2px 8px;border-radius:999px;display:inline-block;margin-bottom:6px;${sideBadge(side.variant)}">${esc(side.label || '')}</span>
-                  <div style="font-size:12px;color:#4B5563;line-height:1.6">${fmt(side.body || '')}</div>
-                  ${(side.dont || []).map(d => `
-                    <div style="display:flex;align-items:center;gap:4px;margin-top:6px;font-size:12px;color:#DC2626"><span>✕</span> ${esc(d)}</div>
-                  `).join('')}
-                  ${(side.swaps || []).map(sw => `
-                    <div style="display:flex;gap:4px;margin-top:6px;font-size:12px"><span style="font-weight:700;color:#0D2640;min-width:70px">${esc(sw.label || '')}</span><span style="color:#4B5563">${esc(sw.value || '')}</span></div>
-                  `).join('')}
-                  ${(side.categories || []).map(cat => `
-                    <div style="margin-top:8px">
-                      <div style="font-size:9px;font-weight:700;color:#6B7280;margin-bottom:4px">${esc(cat.name || '')}</div>
-                      ${(cat.items || []).map(item => `
-                        <div style="display:flex;align-items:flex-start;gap:4px;font-size:12px;color:#4B5563;line-height:1.6"><span style="color:#0D2640;margin-top:1px">•</span> ${fmt(String(item).replace(/^<b>[^<]*<\/b>\s*/, ''))}</div>
-                      `).join('')}
-                    </div>
-                  `).join('')}
-                </div>
-              `).join('')}
-            </div>
-          `;
-        case 'columns':
-          return `
-            <div style="display:flex;flex-direction:column;gap:8px">
-              ${(section.columns || []).map(col => `
-                <div>
-                  <div style="font-size:11px;font-weight:700;color:#0D2640;margin-bottom:4px">${esc(col.title || '')}</div>
-                  <div style="font-size:12px;color:#4B5563;line-height:1.6">${fmt(col.body || '')}</div>
-                </div>
-              `).join('')}
-            </div>
-          `;
-        case 'grid':
-          return `
-            ${section.note ? `<span style="font-size:8px;font-weight:700;padding:2px 8px;border-radius:999px;background:#DCFCE7;color:#166534;border:1px solid #86EFAC;display:inline-block;margin-bottom:8px">${esc(section.note || '')}</span>` : ''}
-            <div style="display:flex;flex-direction:column;gap:10px">
-              ${(section.blocks || []).map(block => `
-                <div>
-                  <div style="font-size:11px;font-weight:700;color:#0D2640;margin-bottom:6px">${esc(block.title || '')}</div>
-                  ${block.highlight
-                    ? `<div style="background:#0D2640;border-radius:12px;padding:12px"><div style="font-size:11px;color:rgba(255,255,255,0.8);line-height:1.6">${fmt((block.items || []).join('; '))}</div></div>`
-                    : `<div style="display:flex;flex-wrap:wrap;gap:4px">
-                        ${(block.items || []).map(item => `
-                          <span style="font-size:10px;color:#0D2640;background:#F3F4F6;border-radius:8px;padding:3px 6px">${esc(item)}</span>
-                        `).join('')}
-                      </div>`
-                  }
-                </div>
-              `).join('')}
-            </div>
-          `;
-        case 'faq':
-          return `
-            <div style="display:flex;flex-direction:column;gap:4px">
-              ${(section.items || []).map((f, idx) => `
-                <details style="border:1px solid #E8E8E8;border-radius:12px">
-                  <summary style="padding:10px 14px;cursor:pointer;list-style:none;font-size:11px;font-weight:700;display:flex;justify-content:space-between;align-items:center;color:#0D2640">
-                    <span style="flex:1">${esc(f.q || '')}</span>
-                    <span style="font-size:9px;color:#6B7280;flex-shrink:0">▼</span>
-                  </summary>
-                  <div style="padding:12px 14px;border-top:1px solid #E8E8E8;font-size:12px;color:#4B5563;line-height:1.6">${fmt(f.a || '')}</div>
-                </details>
-              `).join('')}
-            </div>
-          `;
-        default:
-          return `<div style="font-size:12px;color:#4B5563;line-height:1.6">${fmt(section.contenido || section.body || '')}</div>`;
+         case 'split':
+           return `
+             <div style="display:flex;flex-direction:column;gap:10px">
+               ${(section.sides || []).map(side => `
+                 <div>
+                   <span style="font-size:9px;font-weight:700;padding:2px 8px;border-radius:999px;display:inline-block;margin-bottom:6px;${sideBadge(side.variant)}">${esc(side.label || '')}</span>
+                   <div style="font-size:10px;color:#4B5563;line-height:1.5">${fmt(escRich(side.body || ''))}</div>
+                   ${(side.dont || []).map(d => `
+                     <div style="display:flex;align-items:center;gap:4px;margin-top:4px;font-size:10px;color:#DC2626"><span>✕</span> ${escRich(d)}</div>
+                   `).join('')}
+                   ${(side.swaps || []).map(sw => `
+                     <div style="display:flex;gap:4px;margin-top:4px;font-size:10px"><span style="font-weight:700;color:#0D2640;min-width:70px">${esc(sw.label || '')}</span><span style="color:#4B5563">${escRich(sw.value || '')}</span></div>
+                   `).join('')}
+                   ${(side.categories || []).map(cat => `
+                     <div style="margin-top:6px;padding-top:6px;border-top:1px solid #F3F4F6">
+                       <div style="font-size:9px;font-weight:700;color:#6B7280;margin-bottom:4px">${esc(cat.name || '')}</div>
+                       ${(cat.items || []).map(item => `
+                         <div style="display:flex;align-items:flex-start;gap:4px;font-size:10px;color:#4B5563;line-height:1.5"><span style="color:#0D2640;margin-top:1px">•</span> ${fmt(escRich(String(item)))}</div>
+                       `).join('')}
+                     </div>
+                   `).join('')}
+                 </div>
+               `).join('')}
+             </div>
+           `;
+         case 'columns':
+           return `
+             <div style="display:flex;flex-direction:column;gap:8px">
+               ${(section.columns || []).map(col => `
+                 <div style="padding:8px 0;border-bottom:1px solid #F3F4F6">
+                   <div style="font-size:11px;font-weight:700;color:#0D2640;margin-bottom:4px">${esc(col.title || '')}</div>
+                   <div style="font-size:10px;color:#4B5563;line-height:1.5">${fmt(escRich(col.body || ''))}</div>
+                 </div>
+               `).join('')}
+             </div>
+           `;
+         case 'grid':
+           return `
+             ${section.note ? `<span style="font-size:8px;font-weight:700;padding:2px 8px;border-radius:999px;background:#DCFCE7;color:#166534;border:1px solid #86EFAC;display:inline-block;margin-bottom:8px">${esc(section.note || '')}</span>` : ''}
+             <div style="display:flex;flex-direction:column;gap:10px">
+               ${(section.blocks || []).map(block => `
+                 <div style="padding:6px 0">
+                   <div style="font-size:11px;font-weight:700;color:#0D2640;margin-bottom:6px">${esc(block.title || '')}</div>
+                   ${block.highlight
+                     ? `<div style="background:#0D2640;border-radius:12px;padding:12px"><div style="font-size:10px;color:rgba(255,255,255,0.8);line-height:1.5">${fmt((block.items || []).join('; '))}</div></div>`
+                     : `<div style="display:flex;flex-wrap:wrap;gap:4px">
+                         ${(block.items || []).map(item => `
+                           <span style="font-size:10px;color:#0D2640;background:#F3F4F6;border-radius:8px;padding:3px 6px">${escRich(item)}</span>
+                         `).join('')}
+                       </div>`
+                   }
+                 </div>
+               `).join('')}
+             </div>
+           `;
+         case 'faq':
+           return `
+             <div style="display:flex;flex-direction:column;gap:4px">
+               ${(section.items || []).map((f, idx) => `
+                 <details style="border-bottom:1px solid #F3F4F6">
+                   <summary style="padding:10px 0;cursor:pointer;list-style:none;font-size:11px;font-weight:700;display:flex;justify-content:space-between;align-items:center;color:#0D2640">
+                     <span style="flex:1">${escRich(f.q || '')}</span>
+                     <span style="font-size:9px;color:#6B7280;flex-shrink:0">▼</span>
+                   </summary>
+                   <div style="padding:8px 0 12px 0;font-size:10px;color:#4B5563;line-height:1.5">${fmt(escRich(f.a || ''))}</div>
+                 </details>
+               `).join('')}
+             </div>
+           `;
+         default:
+           return `<div style="font-size:10px;color:#4B5563;line-height:1.5;padding:8px 0;border-bottom:1px solid #F3F4F6">${fmt(escRich(section.contenido || section.body || ''))}</div>`;
       }
     };
 
     return `
       <details class="guia-outer">
-        <summary>
+        <summary style="background:#0066CC;border-radius:12px;padding:16px;cursor:pointer;list-style:none;color:#fff;display:flex;justify-content:space-between;align-items:center">
           <div style="display:flex;align-items:center;gap:10px">
             <div style="display:flex;flex-direction:column">
               <span style="font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;opacity:.7">Contenido educativo</span>
@@ -649,54 +666,54 @@ export const generateDashboardFitnessHTML = (data: ClientPlan, mode = "todo") =>
 
     const cats = ['Intensidad','Series','Notación','Calentamiento','Nutrición','Composición corporal','Hábitos'].filter(c => grouped[c]);
 
-    return `
-      <details class="guia-outer">
-        <summary style="background:#F3F4F6;border-radius:12px">
-          <div style="display:flex;align-items:center;gap:10px">
-            <div style="display:flex;flex-direction:column">
-              <span style="font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6B7280">Términos clave</span>
-              <span style="font-size:15px;font-weight:900;color:#0D2640">Glosario DocFitness</span>
-            </div>
-          </div>
-          <span style="font-size:9px;opacity:.6">Léelo ▼</span>
-        </summary>
-        <div class="guia-content">
-            ${cats.map(cat => `
-              <div style="margin-bottom:10px">
-                <div style="display:flex;align-items:center;gap:5px;margin-bottom:5px">
-                  <span style="width:6px;height:6px;border-radius:999px;background:${catColor(cat)}"></span>
-                  <span style="font-size:10px;font-weight:700;color:#0D2640">${esc(cat)}</span>
-                </div>
-                 <div style="display:flex;flex-direction:column;gap:3px">
-                  ${grouped[cat].map(term => `
-                 <details style="border-bottom:1px solid #E8E8E8">
-                     <summary style="padding:5px 8px;cursor:pointer;list-style:none;font-size:10px;font-weight:700;display:flex;justify-content:space-between;align-items:center;color:#0D2640;background:#fff">
-                       <div style="display:flex;align-items:center;gap:4px;flex:1;min-width:0">
-                         <span style="font-size:6px;font-weight:800;padding:1px 4px;border-radius:999px;background:${catColor(cat)};color:#fff;white-space:nowrap;flex-shrink:0">
-                           ${(() => { const m={'Intensidad':'INT','Series':'SER','Notación':'NOT','Calentamiento':'CAL','Nutrición':'NUT','Composición corporal':'COMP','Hábitos':'HAB'}; return m[cat] || cat.substring(0,3).toUpperCase(); })()}
-                         </span>
-                         <span style="font-size:9px;font-weight:700;color:#0D2640;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:1;min-width:0">${esc(term.title || '')}</span>
-                         ${term.subtitle ? `<span style="font-size:7px;color:#6B7280;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:1;min-width:0">— ${esc(term.subtitle)}</span>` : ''}
+     return `
+       <details class="guia-outer">
+         <summary style="background:#0D2640;border-radius:12px;padding:16px;cursor:pointer;list-style:none;color:#fff;display:flex;justify-content:space-between;align-items:center">
+           <div style="display:flex;align-items:center;gap:10px">
+             <div style="display:flex;flex-direction:column">
+               <span style="font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;opacity:.7">Términos clave</span>
+               <span style="font-size:15px;font-weight:900">Glosario DocFitness</span>
+             </div>
+           </div>
+           <span style="font-size:9px;opacity:.6">Léelo ▼</span>
+         </summary>
+         <div class="guia-content">
+             ${cats.map(cat => `
+               <div style="margin-bottom:10px">
+                 <div style="display:flex;align-items:center;gap:5px;margin-bottom:5px">
+                   <span style="width:6px;height:6px;border-radius:999px;background:${catColor(cat)}"></span>
+                   <span style="font-size:10px;font-weight:700;color:#0D2640">${esc(cat)}</span>
+                 </div>
+                   <div style="display:flex;flex-direction:column;gap:6px">
+                     ${grouped[cat].map(term => `
+                    <details style="background:#fff;border:1px solid #E8E8E8;border-radius:12px">
+                        <summary style="padding:8px 10px;cursor:pointer;list-style:none;font-size:10px;font-weight:700;display:flex;justify-content:space-between;align-items:center;color:#0D2640">
+                          <div style="display:flex;align-items:center;gap:4px;flex:1;min-width:0">
+                            <span style="font-size:8px;font-weight:800;padding:1px 4px;border-radius:999px;background:${catColor(cat)};color:#fff;white-space:nowrap;flex-shrink:0">
+                              ${(() => { const m={'Intensidad':'INT','Series':'SER','Notación':'NOT','Calentamiento':'CAL','Nutrición':'NUT','Composición corporal':'COMP','Hábitos':'HAB'}; return m[cat] || cat.substring(0,3).toUpperCase(); })()}
+                            </span>
+                            <span style="font-size:9px;font-weight:700;color:#0D2640;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:1;min-width:0">${esc(term.title || '')}</span>
+                             ${term.subtitle ? `<span style="font-size:7px;color:#6B7280;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:1;min-width:0">— ${esc(term.subtitle)}</span>` : ''}
+                          </div>
+                          <span style="font-size:9px;color:#6B7280;flex-shrink:0;padding:5px 6px">▼</span>
+                        </summary>
+                       <div style="padding:8px 10px;font-size:10px;color:#4B5563;line-height:1.5">
+                         <div style="margin-bottom:${term.example ? '6px' : '0'}">${fmt(escRich(term.body || ''))}</div>
+                         ${term.example ? `<div style="display:flex;align-items:flex-start;gap:3px"><span style="color:#0D2640;margin-top:1px">•</span> <span style="font-weight:700">Ej:</span> <span style="font-style:italic">${fmt(escRich(term.example))}</span></div>` : ''}
                        </div>
-                       <span style="font-size:9px;color:#6B7280;flex-shrink:0;padding:5px 6px">▼</span>
-                     </summary>
-                    <div style="padding:8px 10px;font-size:9px;color:#4B5563;line-height:1.4">
-                      <div style="margin-bottom:${term.example ? '6px' : '0'}">${fmt(term.body || '')}</div>
-                      ${term.example ? `<div style="display:flex;align-items:flex-start;gap:3px"><span style="color:#0D2640;margin-top:1px">•</span> <span style="font-weight:700">Ej:</span> ${fmt(term.example)}</div>` : ''}
-                    </div>
-                  </details>
-                  `).join('')}
-                </div>
-              </div>
-            `).join('')}
-          </div>
-        </details>
-      `;
+                     </details>
+                     `).join('')}
+                 </div>
+               </div>
+             `).join('')}
+           </div>
+         </details>
+       `;
   };
 
   const heroHTML = () => {
     return `
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;margin-bottom:16px">
       <div style="flex:1;min-width:0">
         <div style="font-size:22px;font-weight:900;line-height:1.1;color:#0D2640">Hola,</div>
         <div style="font-size:22px;font-weight:900;line-height:1.1;color:#0D2640">${esc(firstName)}${lastName ? ' ' + esc(lastName) : ''}</div>
@@ -787,7 +804,7 @@ export const generateDashboardFitnessHTML = (data: ClientPlan, mode = "todo") =>
       const s3 = ex.s3 || ex.semana3 || '';
       const s4 = ex.s4 || ex.semana4 || '';
       const reps = ex.reps || '';
-      const descanso = ex.descanso || '';
+      const descanso = formatRest(ex.descanso || '');
       const isAprox = ex.faseId === 'SA' || (ex.categoria || '').toLowerCase() === 'aprox' || /\(\d+%\)/.test(ex.nombre || '');
       const tecnica = isAprox ? '' : (ex.tecnica || '');
       const rir = ex.rir || '';
@@ -840,11 +857,10 @@ export const generateDashboardFitnessHTML = (data: ClientPlan, mode = "todo") =>
             </div>
             <span style="font-size:10px;color:rgba(255,255,255,0.6);font-weight:700">${ejercicios.length} ejercicios ▼</span>
           </summary>
-          <div style="padding:8px 12px 0 12px;display:flex;gap:8px;align-items:center">
-             <span style="font-size:9px;font-weight:700;color:#6B7280;background:#F3F4F6;padding:3px 8px;border-radius:999px">${ejercicios.length} ejercicios</span>
-             <span style="font-size:9px;font-weight:700;color:#6B7280;background:#F3F4F6;padding:3px 8px;border-radius:999px">${bloques.length} bloques</span>
-             <span style="font-size:9px;font-weight:700;color:#6B7280;background:#F3F4F6;padding:3px 8px;border-radius:999px">~45 min</span>
-          </div>
+           <div style="padding:8px 12px 0 12px;display:flex;gap:8px;align-items:center">
+              <span style="font-size:9px;font-weight:700;color:#6B7280;background:#F3F4F6;padding:3px 8px;border-radius:999px">${ejercicios.length} ejercicios</span>
+              <span style="font-size:9px;font-weight:700;color:#6B7280;background:#F3F4F6;padding:3px 8px;border-radius:999px">${bloques.length} bloques</span>
+           </div>
           <div class="content" style="padding:10px 12px 12px 12px">
             ${isToday ? `<div style="font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#6B7280;margin-bottom:8px;padding-left:2px">CALENTAMIENTO</div>` : ''}
             ${warmupHtml}
@@ -996,24 +1012,26 @@ export const generateDashboardFitnessHTML = (data: ClientPlan, mode = "todo") =>
         const displayUnit = unit || porcion || '';
         const isDisplayWeight = isWeightUnit(displayUnit);
 
-        if (effectiveCount > 0 && displayUnit) {
-          const unitPlural = pluralize(displayUnit, effectiveCount);
-          if (hasGrams && !isDisplayWeight) {
-            return `${gramsNum}g (${effectiveCount} ${unitPlural})`;
-          }
-          if (hasGrams && isDisplayWeight) {
-            return `${gramsNum}g`;
-          }
-          return `${effectiveCount} ${unitPlural}`;
-        }
+        const b = (val) => `<b>${val}</b>`;
 
+        if (hasGrams && effectiveCount > 0 && displayUnit && !isDisplayWeight) {
+          const unitPlural = pluralize(displayUnit, effectiveCount);
+          return `${b(gramsNum + 'g')} (${effectiveCount} ${unitPlural})`;
+        }
+        if (hasGrams && effectiveCount > 0 && displayUnit && isDisplayWeight) {
+          return `${b(gramsNum + 'g')}`;
+        }
         if (hasGrams && displayUnit && !isDisplayWeight) {
           const assumedCount = 1;
           const unitPlural = pluralize(displayUnit, assumedCount);
-          return `${gramsNum}g (${assumedCount} ${unitPlural})`;
+          return `${b(gramsNum + 'g')} (${assumedCount} ${unitPlural})`;
         }
         if (hasGrams) {
-          return `${gramsNum}g`;
+          return `${b(gramsNum + 'g')}`;
+        }
+        if (effectiveCount > 0 && displayUnit) {
+          const unitPlural = pluralize(displayUnit, effectiveCount);
+          return `${effectiveCount} ${unitPlural}`;
         }
         if (displayUnit && displayUnit !== 'g') {
           const assumedCount = 1;
@@ -1150,13 +1168,13 @@ export const generateDashboardFitnessHTML = (data: ClientPlan, mode = "todo") =>
        const hasGrams = Number.isFinite(gramsNum) && gramsNum > 0;
        
        if (hasGrams && unidad && unidad !== 'g') {
-         return `${gramsNum}${unidad} (${porcion || '1 toma'})`;
+         return `<b>${gramsNum}${unidad}</b> (${porcion || '1 toma'})`;
        }
        if (hasGrams && porcion) {
-         return `${gramsNum}g (${porcion})`;
+         return `<b>${gramsNum}g</b> (${porcion})`;
        }
        if (hasGrams) {
-         return `${gramsNum}g`;
+         return `<b>${gramsNum}g</b>`;
        }
        if (porcion) {
          return porcion;
@@ -1318,7 +1336,7 @@ html{-webkit-text-size-adjust:100%}
 body{font-family:system-ui,-apple-system,sans-serif;background:#F8F9FC;color:#0D2640;line-height:1.45;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
 img{max-width:100%;display:block}
 a{color:#0D2640;text-decoration:none}
-.wrap{max-width:560px;margin:0 auto;padding:16px 14px 0}
+.wrap{max-width:560px;margin:0 auto;padding:0 14px 0}
 .app-footer{font-size:9px;letter-spacing:1px;color:#6B7280;font-weight:700;text-align:center;margin-top:0;text-transform:uppercase}
 .app-footer-sub{font-size:8px;letter-spacing:0.8px;color:#9CA3AF;font-weight:600;text-align:center;margin-top:0;text-transform:uppercase}
 
@@ -1374,7 +1392,7 @@ details[open] summary{border-bottom:1px solid #E8E8E8;background:#fafafa;border-
 </style>
 </head>
 <body>
-<header style="background:#0066CC;padding:18px 16px;display:flex;justify-content:center;align-items:center">
+<header style="background:#0066CC;padding:12px 16px;display:flex;justify-content:center;align-items:center">
   <div style="height:28px;width:auto;display:block;filter:brightness(0) invert(1)">${logoHTML}</div>
 </header>
 

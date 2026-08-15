@@ -5,3 +5,6 @@ dist
 .vite
 .vercel
 .netlify
+*.DS_Store
+._*
+Thumbs.db
